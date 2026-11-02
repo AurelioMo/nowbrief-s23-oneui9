@@ -30,3 +30,23 @@ pessoal foi incluida no pacote publicavel.
 - Replicacao em outro aparelho/ROM; fluxo Termux completo.
 
 Nao apresentar menu, provider ou bind como prova desses testes funcionais.
+
+## Reteste ADB - 2026-11-02, tarde
+
+- Root, API 37, Smart Suggestions 7.3.30.9 e as quatro flags continuam ativos.
+- Permissao SET_BIOMETRIC_DIALOG_ADVANCED permanece concedida.
+- Tela Now nudge aberta; interruptor Ativado e pagina de tarefas acessiveis.
+- AugmentedAutofillService configurado como servico Samsung; o historico do
+  framework registra pedidos, mas isso nao comprova sugestoes contextuais visiveis.
+- Brief aberto novamente; cards de personalizacao e clima horario atualizados
+  foram vistos na tela. Nao foi necessario reinstalar nem reiniciar Android.
+- GenUIService continua conectado ao SystemUI, requested/received/hasBound=true.
+- Widget registrado, sem mascaramento; adicao na home ainda nao executada.
+- Tela bloqueada acordada e inspecionada: nenhum cartao Now Brief visivel nesse
+  teste. Nao chamamos isso de sucesso da Now Bar nem negacao de permissao.
+- Nenhum consentimento, biometria ou politica de aplicativos foi contornado.
+- `sh run.sh status` executado no aparelho. Help, argumentos e sintaxe do wrapper
+  testados offline. O novo wrapper de ativacao nao foi reaplicado ao telefone
+  ja ativado; o procedimento interno e o utilizado anteriormente.
+
+As capturas e os dumps desse reteste permanecem somente no diretorio privado.

@@ -13,6 +13,25 @@ O instalador requer `--review` com os campos:
   private-data-backup.json consistente, com hash do arquivo local conferido.
 
 Esses campos sao um registro da revisao humana, nao uma deteccao automatica.
+Crie `review.json` FORA do Git, com esta estrutura inicial. Substitua os hashes
+e so altere false para true depois de verificar cada requisito:
+
+```json
+{
+  "installed_sha256": "HASH_DO_APK_ORIGINAL_NO_SNAPSHOT",
+  "candidate_sha256": "HASH_DO_APK_BAIXADO",
+  "dependencies_verified": false,
+  "consistent_data_backup_verified": false,
+  "data_compatibility_verified": false,
+  "room_identities_preserved": false
+}
+```
+
+No caminho `--reversible-trial`, `data_compatibility_verified` pode continuar
+false, mas as identidades Room e o backup consistente precisam estar comprovados.
+Sem essa auditoria, este projeto nao oferece uma instalacao automatica segura
+de uma versao diferente do Smart Suggestions.
+
 Identidades Room iguais nao provam toda migracao. Nao os marque true sem provas.
 O teste original foi uma tentativa controlada com backup, nao prova universal de
 compatibilidade ou de downgrade. Nunca use assinatura incompatível.

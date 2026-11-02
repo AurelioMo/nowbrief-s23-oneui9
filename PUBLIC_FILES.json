@@ -20,6 +20,7 @@
   "evidence/RESULTS.md",
   "evidence/TESTS.txt",
   "profiles/s23-oneui9-tested.json",
+  "run.sh",
   "scripts/GenUIBridge.py",
   "scripts/audit_installed.py",
   "scripts/backup-private-data.py",
@@ -32,6 +33,7 @@
   "scripts/rollback-nowbrief-s23.sh",
   "scripts/signature_permissions.py",
   "scripts/test_native.py",
+  "scripts/test_runner.py",
   "scripts/test_signature_permissions.py",
   "tools/check_publication.py"
 ]

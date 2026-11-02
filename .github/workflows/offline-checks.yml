@@ -14,6 +14,6 @@ jobs:
           PYTHONDONTWRITEBYTECODE: '1'
         run: python3 -m unittest discover -s scripts -p 'test_*.py'
       - name: Shell syntax
-        run: for script in scripts/*.sh; do sh -n "$script"; done
+        run: for script in run.sh scripts/*.sh; do sh -n "$script"; done
       - name: Publication boundary and hashes
         run: python3 tools/check_publication.py

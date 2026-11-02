@@ -18,19 +18,137 @@ Sem aplicativo substituto, sem flash e sem escrita fisica na particao do sistema
 > **Now Nudge contextual e cartao visivel na Now Bar ainda nao foram validados.**
 > Este projeto nao e um desbloqueio universal nem um instalador de um clique.
 
-## O que este projeto faz
+## Tutorial: faca nesta ordem
 
-Documenta e automatiza partes do desbloqueio do Samsung Smart Suggestions:
+**No seu aparelho ja ativado, nao repita a instalacao.** Use `status`,
+`open-brief`, `open-nudge` ou `diagnose`. Para uma instalacao nova, siga abaixo.
+O perfil atende somente ao build e aos hashes da tabela deste README.
 
-1. Audita os APKs reais, assinaturas, versoes, componentes e ambiente root.
-2. Atualiza Smart Suggestions **somente quando justificado e compativel**.
-3. Apresenta Floating Features modificadas por **bind mount**, com backup.
-4. Verifica a conexao nativa **SystemUI/AODService -> GenUIService**.
-5. Corrige, no caso testado, a permissao de assinatura que derrubava a biometria
-   da Inteligencia de dados pessoais, **sem contornar a autenticacao**.
+### 1. Baixe os scripts
 
-Nao desenvolve outro Brief, nao simula Now Bar e nao altera assinaturas de APKs.
-APKs, firmware e dados do telefone **nao sao redistribuidos**.
+No computador, instale Git, Python 3, ADB e Android SDK Build Tools
+(`aapt2` e `apksigner` no PATH). Autorize depuracao USB e root no KernelSU.
+
+```sh
+git clone https://github.com/AurelioMo/nowbrief-s23-oneui9.git
+cd nowbrief-s23-oneui9
+adb devices -l
+sh run.sh status
+```
+
+Deixe somente o S23 desejado conectado. Se houver varios, defina
+`ANDROID_SERIAL` com o serial mostrado pelo seu ADB antes de continuar.
+
+### 2. Smart Suggestions: confira antes de instalar
+
+O caso testado usa **7.3.30.9 / 733009000**, arm64-v8a, minSdk 34.
+Obtenha o APK voce mesmo na [pagina do Smart Suggestions](https://www.apkmirror.com/apk/samsung-electronics-co-ltd/samsungsmartsuggestions/).
+Nao distribuimos APK Samsung. Se essa versao ja estiver instalada com o hash
+testado, pule para a etapa 3. Versao diferente exige auditoria, nao downgrade cego.
+
+```sh
+sh run.sh snapshot snapshots/preinstall-01
+sh run.sh backup-data snapshots/preinstall-01
+apksigner verify --verbose --print-certs /caminho/SmartSuggestions.apk
+aapt2 dump badging /caminho/SmartSuggestions.apk
+```
+
+Compare assinatura, hash e dependencias com o APK coletado. Prepare o registro
+de revisao conforme [INSTALLATION.md](docs/INSTALLATION.md). **Nao marque
+verificacoes como verdadeiras sem realiza-las.** Depois da revisao:
+
+```sh
+sh run.sh install \
+  --state snapshots/preinstall-01 \
+  --apk /caminho/SmartSuggestions.apk \
+  --sha256 9e09fc48d5a85c0f1c98a811e2554255988601c9b6e54865e22b07f12fc1d378 \
+  --source URL_EXATA_DE_ONDE_BAIXOU \
+  --review /caminho/review.json \
+  --reversible-trial
+```
+
+O instalador aplica temporariamente o bypass de build do guia original,
+restaura `ro.build.official.release` e verifica o APK realmente instalado.
+Nao burla assinatura e nao ativa CorePatch.
+
+### 3. Ative as Floating Features e os componentes
+
+```sh
+sh run.sh activate snapshots/features-01
+```
+
+Esse comando **executa**, nao apenas explica: faz backup novo, valida o perfil,
+prepara XML, aplica bind mount, configura Brief/Nudge e habilita os componentes
+previstos. Se recusar hash, build ou XML, pare; nao remova a protecao.
+Anote `snapshots/features-01`: e o estado necessario para desfazer a alteracao.
+
+### 4. Corrija Dados pessoais, somente se a permissao faltar
+
+Se `status` mostrar `SET_BIOMETRIC_DIALOG_ADVANCED: granted=true`, pule.
+Se o aplicativo fechar com essa SecurityException no ambiente testado:
+
+```sh
+sh run.sh biometric-fix snapshots/biometric-01
+```
+
+Isso monta uma allowlist especifica depois de comparar os certificados do
+Android e do APK. Nao remove nem contorna a autenticacao biometrica.
+
+### 5. Atualize o cache e abra os recursos
+
+Os scripts **nao reiniciam o Android automaticamente**. No caso testado,
+force-stop nao atualizou o cache herdado do zygote. Depois de concluir as
+etapas necessarias e salvar seu trabalho, faca **um soft reboot pelo KernelSU**.
+Alternativa avancada usada no teste, apenas com rollback e mounts conferidos:
+
+```sh
+adb shell 'su -mm -c "sync; setprop ctl.restart zygote"'
+```
+
+Isso interrompe todos os apps. Nao execute os dois metodos nem repita em loop.
+Depois que a interface voltar:
+
+```sh
+sh run.sh status
+sh run.sh onboarding
+sh run.sh open-nudge
+```
+
+Toque em **Iniciar Now brief** e conceda pessoalmente as permissoes desejadas.
+Depois da configuracao inicial, use `sh run.sh open-brief` para abrir os cards.
+No Nudge, confira o interruptor **Ativado**. No launcher, pressione a tela inicial,
+abra **Widgets** e procure **Now brief** para adicionar o widget.
+
+### 6. Now Bar: confira a conexao nativa
+
+Em Configuracoes, procure **Now bar** e ligue **Now brief**. Depois:
+
+```sh
+sh run.sh diagnose diagnostics/nowbar-01
+```
+
+No caso testado, GenUI ja conecta ao SystemUI, sem instalar bridge.
+O cartao depende tambem da politica e do horario do Brief; bind nao prova cartao
+visivel. Se nao conectar, siga [NowBarFix.md](NowBarFix.md), nao instale um APK
+de bridge ou transplante assinaturas indiscriminadamente.
+Notification Highlights continua separado e nao foi ativado neste aparelho.
+
+### Desfazer
+
+Use exatamente as pastas criadas na sua execucao:
+
+```sh
+sh run.sh rollback snapshots/features-01
+# Apenas se voce aplicou a correcao biometrica:
+sh run.sh rollback-biometric snapshots/biometric-01
+```
+
+O rollback de flags nao desfaz a atualizacao do APK ou escolhas do onboarding.
+O overlay biometrico precisa de reinicio controlado para reavaliar permissoes.
+Leia [ROLLBACK.md](docs/ROLLBACK.md) antes de tentar restaurar APK/dados.
+Para Termux: [comandos locais](docs/TERMUX.md).
+
+---
 
 ## Status real
 
@@ -42,7 +160,7 @@ considerada prova de funcionamento.
 | Now Brief | Confirmado | Onboarding responsivo, cards, clima horario e aviso UV |
 | Dados pessoais | Corrigido | Permissao biometrica concedida; abertura confirmada pelo usuario |
 | GenUI / Now Bar | Conexao confirmada | Binder recebido e `hasBound=true` para SystemUI |
-| Now Brief na tela bloqueada | Pendente | Politica matinal ja marcada como exibida; cartao ainda nao comprovado |
+| Now Brief na tela bloqueada | Nao apareceu no reteste | GenUI conectado, mas nenhum cartao visivel no bloqueio |
 | Now Nudge contextual | Pendente | Componentes habilitados; ha politicas por app/Activity a investigar |
 | Widget | Parcial | Provider registrado; adicao e atualizacao na home nao testadas |
 | Notification Highlights | Nao ativado | Language Core e modelos nao comprovados |
@@ -68,64 +186,6 @@ exige nova auditoria. [Versoes, certificado e hashes](VERSIONS.md).
 LSPosed e Zygisk Next ja estavam instalados. Nao foi necessario instalar
 CorePatch ou habilitar bypass de assinatura neste teste. Nao afirmamos que os
 modulos encontrados sejam requisitos universais.
-
-## Por onde comecar
-
-**Primeiro leia o [guia completo](docs/GUIDE.md).** Ele separa coleta inicial,
-backup privado, revisao de APK, ativacao, cache do Android e testes funcionais.
-
-Preparacao no computador: Python 3, ADB, Java e Android SDK Build Tools
-(`aapt2` e `apksigner`). Os scripts Python nao exigem pacotes pip externos.
-Para Termux, veja os [limites e comandos locais](docs/TERMUX.md).
-
-Comece com uma coleta, sem aplicar modificacoes:
-
-```sh
-adb devices -l
-adb shell 'su -mm -c id'
-python3 scripts/native.py collect --state snapshots/preinstall
-```
-
-**Nao execute a instalacao inteira novamente em um telefone ja ativado.**
-Nao ha APK incluso nem download automatico; a [instalacao auditada](docs/INSTALLATION.md)
-exige verificar procedencia, signer, ABI, SDK, dependencias e dados.
-
-### Duas correcoes importantes do caso testado
-
-**Brief incompleto ou com botao sem resposta:** visibilidade do XML no namespace
-nao comprova atualizacao do cache Java. No teste, force-stop nao bastou; um
-restart controlado de zygote fez o onboarding inicializar. Ele **interrompe
-apps, audio e servicos** e nao e executado automaticamente pelos scripts.
-
-**Dados pessoais com falhas continuas:** a Activity biometrica exigia
-`SET_BIOMETRIC_DIALOG_ADVANCED`. A correcao validou o signer real do Android e
-do aplicativo e adicionou somente essa autorizacao na allowlist de assinatura,
-por bind mount. Nao alterou biometria ou consentimentos. [Procedimento e limites](KNOWN_ISSUES.md).
-
-## Now Bar: nao instale bridge por reflexo
-
-O metodo original inclui o diagnostico e a correcao GenUI. Essa etapa foi mantida,
-mas **neste aparelho a permissao ja foi concedida e a conexao nativa funciona**.
-Nenhum bridge foi instalado. A ausencia de cartao, sozinha, nao prova falta de
-permissao: ha politica de exibicao e consumo de conteudo.
-
-[Leia NowBarFix.md](NowBarFix.md) antes de gerar ou instalar qualquer bridge.
-As ferramentas de bridge sao experimentais e exigem assinatura realmente
-compativel; copiar um Signing Block nao constitui uma assinatura valida.
-
-## Reversibilidade e cuidados
-
-- Nao fazer flash, editar boot/recovery/vbmeta ou escrever fisicamente em `/system`.
-- Nao desabilitar SELinux, limpar dados ou desinstalar componentes criticos.
-- **Reboot completo:** pode remover os overlays temporarios, mas nao o APK,
-  Settings e escolhas do onboarding. Soft reboot preservou o bind no nosso teste;
-  isso nao e garantia para toda ROM.
-- **Rollback de flags nao e rollback de APK.** O downgrade e a restauracao integral
-  de dados privados nao foram validados. Cada transacao tem seu proprio journal.
-- Nao marcar consentimentos de IA ou permissoes pessoais em nome do usuario.
-
-[Leia os procedimentos de rollback](docs/ROLLBACK.md). Nao ha promessa de
-restauracao integral com um clique.
 
 ## Mapa do projeto
 

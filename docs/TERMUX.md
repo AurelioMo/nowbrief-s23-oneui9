@@ -6,6 +6,24 @@ Mantenha esta pasta no armazenamento privado do Termux, nao em pasta publica.
 
 Exemplos, somente depois das verificacoes descritas no README:
 
+Com Git e Python instalados no Termux, baixe a pasta e autorize o Termux no
+KernelSU. O `run.sh` usa o mesmo procedimento, sem ADB:
+
+```sh
+pkg install git python
+git clone https://github.com/AurelioMo/nowbrief-s23-oneui9.git
+cd nowbrief-s23-oneui9
+export NOWBRIEF_TERMUX=1
+sh run.sh status
+# Somente com APK compativel instalado e XML original correspondente ao perfil:
+sh run.sh activate snapshots/features-01
+sh run.sh open-brief
+sh run.sh open-nudge
+```
+
+Para a correcao biometrica e auditoria de APK, `apksigner` precisa funcionar
+localmente. O wrapper nao instala ferramentas nem pula essa verificacao.
+
 ```sh
 python3 scripts/native.py collect --termux --state snapshots/features
 python3 scripts/native.py plan --termux --state snapshots/features --profile profiles/s23-oneui9-tested.json
