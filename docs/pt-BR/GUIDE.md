@@ -14,7 +14,7 @@ por bind mount e configuracoes restauraveis.
 
 **Correcao adicional confirmada:** a falha de dados pessoais na autenticacao
 biometrica foi corrigida com allowlist de assinatura especifica, sem bypass de
-biometria. Leia [KNOWN_ISSUES.md](../KNOWN_ISSUES.md) para condicoes e rollback.
+biometria. Leia [KNOWN_ISSUES.md](KNOWN_ISSUES.md) para condicoes e rollback.
 
 ## Creditos
 
@@ -111,7 +111,7 @@ https://www.apkmirror.com/apk/samsung-electronics-co-ltd/samsungsmartsuggestions
 
 Nao afirmamos que 7.3.30.9 seja a versao mais recente disponivel. E a versao
 efetivamente testada, arm64-v8a, minSdk 34, targetSdk 36.
-Hashes e certificado: [VERSIONS.md](../VERSIONS.md).
+Hashes e certificado: [VERSIONS.md](VERSIONS.md).
 
 ```sh
 apksigner verify --verbose --print-certs /caminho/SmartSuggestions.apk
@@ -123,7 +123,7 @@ Mesmo certificado nao prova compatibilidade de bancos e dependencias.
 
 O instalador exige revisao de compatibilidade, hash, assinatura e backup. Nao
 fornecemos um review.json com verificacoes verdadeiras inventadas para terceiros.
-Consulte [docs/INSTALLATION.md](INSTALLATION.md) antes de usar o instalador.
+Consulte [Instalacao](INSTALLATION.md) antes de usar o instalador.
 
 No teste, o metodo foi `resetprop ro.build.official.release false` seguido de
 `pm install -r -d -i com.sec.android.app.samsungapps -S TAMANHO`, com APK por stdin.
@@ -191,7 +191,7 @@ o botao "Iniciar Now brief" passou a responder e gerou os cards reais.
 
 ## 4. Now Bar e GenUI
 
-Veja [NowBarFix.md](../NowBarFix.md). Nao pule a auditoria de permissao e bind, mas
+Veja [Now Bar](NOW_BAR.md). Nao pule a auditoria de permissao e bind, mas
 **nao instale um bridge quando a permissao ja esta concedida**.
 Neste S23, o AODService e SystemUI compartilham UID 10048 e o GenUI conectou
 nativamente apos atualizar o Smart Suggestions. Nenhum bridge foi instalado.
@@ -220,7 +220,7 @@ python3 scripts/native.py logs --state snapshots/features
 ```
 
 Logs podem conter notificacoes e dados pessoais. Nao publique dumps crus.
-O resumo sanitizado dos resultados esta em [evidence/RESULTS.md](../evidence/RESULTS.md).
+O resumo sanitizado dos resultados esta em [evidence/RESULTS.md](../../evidence/RESULTS.pt-BR.md).
 
 ## Rollback
 
@@ -231,11 +231,11 @@ sh scripts/rollback-nowbrief-s23.sh --state snapshots/features
 Restaura mount, componentes e Settings da transacao. **Nao rebaixa o APK nem
 desfaz escolhas feitas manualmente no onboarding.** Cache antigo tambem pode
 exigir reinicio controlado para refletir a restauracao. Veja
-[docs/ROLLBACK.md](ROLLBACK.md) antes de mexer em APK ou dados privados.
+[Rollback](ROLLBACK.md) antes de mexer em APK ou dados privados.
 
 ## Termux e desenvolvimento
 
-Instrucoes locais: [docs/TERMUX.md](TERMUX.md).
-Testes offline: `python3 -m unittest discover -s scripts -p 'test_*.py'`.
+Instrucoes locais: [Termux](TERMUX.md).
+Testes offline: `PYTHONPATH=scripts python3 -m unittest discover -s tests -p 'test_*.py'`.
 O pacote publico contem somente arquivos revisados. Snapshots, APKs e dados
-privados devem permanecer fora do Git. Veja [a revisao de publicacao](../PUBLISHING.md).
+privados devem permanecer fora do Git. Veja [a revisao de publicacao](../maintainers/PUBLISHING.md).

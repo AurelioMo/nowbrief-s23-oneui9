@@ -55,3 +55,8 @@ pt-BR permitido. Nao confundir esse bloqueio com a excecao de biometria.
 
 Now Brief com cards e abertura de dados pessoais sao confirmados. Este tutorial
 nao oferece ainda uma ativacao contextual completa e validada do Now Nudge.
+
+O bloqueio de Google Mensagens e conversa WhatsApp foi confirmado na politica
+embutida do APK e no caminho de verificacao da versao instalada; nao e uma
+conclusao sobre todas as integracoes do Nudge. [Detalhes e comando somente de
+leitura](NUDGE.md). Nao foi aplicado bypass da lista de aplicativos.

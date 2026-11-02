@@ -12,7 +12,7 @@ jobs:
       - name: Unit tests (no device access)
         env:
           PYTHONDONTWRITEBYTECODE: '1'
-        run: python3 -m unittest discover -s scripts -p 'test_*.py'
+        run: PYTHONPATH=scripts python3 -m unittest discover -s tests -p 'test_*.py'
       - name: Shell syntax
         run: for script in run.sh scripts/*.sh; do sh -n "$script"; done
       - name: Publication boundary and hashes

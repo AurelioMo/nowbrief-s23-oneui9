@@ -38,13 +38,14 @@ Uso: sh run.sh COMANDO [ARGUMENTOS]
   status                     Root, modelo, versao e estado atual (somente leitura)
   snapshot PASTA             Backup de XML, APKs, Settings e componentes
   backup-data PASTA           Backup privado CE/DE antes de atualizar APK
-  install ARGUMENTOS         Instalador auditado; veja docs/INSTALLATION.md
+  install ARGUMENTOS         Instalador auditado; veja docs/pt-BR/INSTALLATION.md
   activate PASTA_NOVA         Coleta + plano + ativacao com perfil estrito
   biometric-fix PASTA_NOVA    Overlay especifico; apenas se a permissao faltar
   onboarding                 Abre a configuracao inicial original do Now Brief
   open-brief                 Abre os cards originais, sem aceitar consentimentos
   open-nudge                 Abre as configuracoes originais do Nudge
   diagnose PASTA_NOVA         Coleta privada de logs e conexao GenUI/Now Bar
+  nudge-policy               Confere a politica no APK ativo, sem modificar dados
   rollback PASTA             Restaura flags, componentes e Settings da transacao
   rollback-biometric PASTA   Restaura o XML de assinatura da transacao
 
@@ -92,6 +93,9 @@ HELP
     diagnose)
         need_state "$@"
         tool diagnose-nowbar.py --output "$1"
+        ;;
+    nudge-policy)
+        tool diagnose_nudge.py "$@"
         ;;
     rollback)
         need_state "$@"

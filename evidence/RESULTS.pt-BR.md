@@ -87,3 +87,15 @@ todas as outras integracoes do Nudge estejam indisponiveis.
 
 As imagens e os logs completos ficam privados. Nenhum APK ou asset Samsung
 foi adicionado ao repositorio publico. O widget foi deixado na tela inicial.
+
+## Verificacao da politica e reorganizacao
+
+O comando `sh run.sh nudge-policy` foi executado no aparelho conectado e
+confirmou identidade da ROM, hash do APK ativo, entradas explicitas de bloqueio
+e prefixo pt permitido. Sua saida registra changes_applied=false.
+A leitura do codigo instalado confirmou gates separados para feature, politica
+e switch/onboarding. Nao foi demonstrado erro nessa politica nem motivo do
+fabricante: nenhuma lista foi removida. [Analise do Nudge](../docs/pt-BR/NUDGE.md).
+
+O tutorial agora possui entradas em portugues/ingles e documentacao por idioma;
+os testes offline ficam em tests/. Isso nao altera as funcionalidades no aparelho.

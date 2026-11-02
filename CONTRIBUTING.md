@@ -23,7 +23,7 @@ necessaria e remova dados pessoais. Nao use screenshots do aparelho sem revisao.
 ## Antes de propor uma alteracao
 
 ```sh
-PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover -s scripts -p 'test_*.py'
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=scripts python3 -m unittest discover -s tests -p 'test_*.py'
 python3 tools/check_publication.py
 ```
 

@@ -27,7 +27,7 @@ O GitHub CLI foi verificado e tem autenticacao ativa. Nenhum token foi exportado
 para a pasta. Destino autorizado: repositorio publico
 `AurelioMo/nowbrief-s23-oneui9`, branch `main`. A publicacao usa somente a
 lista explicita de arquivos aprovados, nunca a pasta privada de trabalho.
-O codigo e a documentacao originais desta adaptacao usam [MIT](LICENSE).
+O codigo e a documentacao originais desta adaptacao usam [MIT](../../LICENSE).
 A licenca nao abrange aplicativos Samsung ou material de terceiros.
 
 O repositorio de Furkan-Tsc nao retornou uma licenca declarada na consulta de
@@ -37,7 +37,7 @@ integral nem presumimos autorizacao para relicencia-lo.
 ## Verificacoes
 
 ```sh
-PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover -s scripts -p 'test_*.py'
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=scripts python3 -m unittest discover -s tests -p 'test_*.py'
 python3 tools/check_publication.py
 ```
 
