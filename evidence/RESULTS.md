@@ -24,7 +24,7 @@ pessoal foi incluida no pacote publicavel.
 
 - Cartao visivel na Now Bar/AOD e persistencia em ciclo bloquear/desbloquear.
 - Now Nudge contextual, notificacoes de conversas e botao flutuante.
-- Widget adicionado e atualizando na home.
+- Atualizacao periodica automatica do widget na home.
 - LLM/modelos e Notification Highlights.
 - Downgrade e restauracao integral de dados privados.
 - Replicacao em outro aparelho/ROM; fluxo Termux completo.
@@ -50,3 +50,40 @@ Nao apresentar menu, provider ou bind como prova desses testes funcionais.
   ja ativado; o procedimento interno e o utilizado anteriormente.
 
 As capturas e os dumps desse reteste permanecem somente no diretorio privado.
+
+## Prova funcional adicional - 2026-11-02, 14:36 a 14:43
+
+### Widget: conteudo e abertura confirmados
+
+1. Abri Widgets no launcher Samsung, selecionei Now brief 4x2 e toquei Adicionar.
+2. O launcher recebeu uma instancia real do AiSuggestionAppWidgetReceiver,
+   appWidgetId 30, com RemoteViews e host Samsung. O widget ficou na home.
+3. A tela mostrou Tarde nublada, mensagem do dia e o evento Finados, nao o texto
+   generico da previa do seletor.
+4. Toquei no widget; o foco mudou para SuggestionUiContentActivity e a tela
+   apresentou Brief com cards e clima horario. Captura inspecionada.
+5. Enviei APPWIDGET_UPDATE apenas a essa instancia. O broadcast foi aceito,
+   mas o RemoteViews permaneceu com a mesma identidade no dump. Isso nao
+   comprova um novo ciclo de renderizacao ou atualizacao periodica automatica.
+
+### Nudge: teste executado, resultado negativo neste aplicativo
+
+Foi usado texto sintetico com data, horario e local em um rascunho do Google
+Mensagens. Nenhuma mensagem foi enviada; o texto foi apagado depois do teste.
+O servico Samsung recebeu onFillRequest. O log registrou:
+
+```text
+AutoFillPolicyManager: isNudgeBlocked: true
+isLocaleAllowed: true (pt-BR)
+SuggestedReplies: onBind nudge null / replies null
+```
+
+O APK ativo foi lido novamente, com o mesmo SHA-256 publicado em VERSIONS.md.
+Seu asset autofill_nudge_allow_policy.json bloqueia o pacote Google Mensagens
+e a Activity de conversa do WhatsApp. Nao desativei a politica nem ampliei a
+captura para apps bloqueados. Nao houve sugestao contextual visivel; portanto
+este teste nao comprova Now Nudge funcional. Isso tambem nao demonstra que
+todas as outras integracoes do Nudge estejam indisponiveis.
+
+As imagens e os logs completos ficam privados. Nenhum APK ou asset Samsung
+foi adicionado ao repositorio publico. O widget foi deixado na tela inicial.

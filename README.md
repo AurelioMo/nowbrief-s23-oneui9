@@ -161,8 +161,8 @@ considerada prova de funcionamento.
 | Dados pessoais | Corrigido | Permissao biometrica concedida; abertura confirmada pelo usuario |
 | GenUI / Now Bar | Conexao confirmada | Binder recebido e `hasBound=true` para SystemUI |
 | Now Brief na tela bloqueada | Nao apareceu no reteste | GenUI conectado, mas nenhum cartao visivel no bloqueio |
-| Now Nudge contextual | Pendente | Componentes habilitados; ha politicas por app/Activity a investigar |
-| Widget | Parcial | Provider registrado; adicao e atualizacao na home nao testadas |
+| Now Nudge contextual | Nao comprovado | Teste no Google Mensagens bloqueado pela politica interna do APK |
+| Widget | Conteudo e toque confirmados | Adicionado na home, carregou dados e abriu o Brief; atualizacao periodica pendente |
 | Notification Highlights | Nao ativado | Language Core e modelos nao comprovados |
 
 Veja o [resumo sanitizado](evidence/RESULTS.md). Nao publicamos capturas ou logs

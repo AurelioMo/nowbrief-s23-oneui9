@@ -34,8 +34,8 @@ privados do telefone. Nao atribuimos uma licenca ao codigo de terceiros.
 | Smart Suggestions 7.3.30.9 | Instalado; assinatura e hash conferidos |
 | Now Brief / onboarding | Funcionando apos atualizar cache do ambiente Android |
 | Cards | Personalizacao, clima horario e protecao UV observados |
-| Widget | Provider registrado; adicao e atualizacao na home nao testadas |
-| Now Nudge | Flags e componentes habilitados; sugestoes contextuais nao testadas |
+| Widget | Adicionado na home; conteudo real e abertura por toque confirmados; atualizacao periodica pendente |
+| Now Nudge | Teste contextual no Google Mensagens bloqueado pela politica interna; sugestao visivel nao comprovada |
 | GenUI / Now Bar | Bind ativo do SystemUI ao GenUIService |
 | Cartao na tela bloqueada | Ainda nao confirmado; politica matinal ja consumida |
 | Soft reboot do KernelSU | Usuario executou; bind e Brief permaneceram no teste |
