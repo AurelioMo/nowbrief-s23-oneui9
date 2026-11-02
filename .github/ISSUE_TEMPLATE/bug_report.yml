@@ -1,0 +1,33 @@
+name: Problema no aparelho
+description: Relate comportamento real sem enviar dados pessoais ou dumps completos.
+title: "[Bug] "
+body:
+  - type: checkboxes
+    id: privacy
+    attributes:
+      label: Antes de enviar
+      options:
+        - label: Li os problemas conhecidos e nao inclui contas, mensagens, serial, tokens ou logs completos.
+          required: true
+        - label: Entendo que menu habilitado nao comprova funcionamento contextual.
+          required: true
+  - type: textarea
+    id: environment
+    attributes:
+      label: Ambiente
+      description: Modelo/codinome, ROM/build, One UI/Android/API, root e versoes dos APKs. Nunca inclua serial ou IMEI.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Como reproduzir
+      description: Passos, resultado esperado, observado e o que ja funcionava.
+    validations:
+      required: true
+  - type: textarea
+    id: error
+    attributes:
+      label: Excecao sanitizada (opcional)
+      description: Somente as linhas necessarias, sem notificacoes, identificadores ou outros dados privados.
+      render: text

@@ -1,0 +1,19 @@
+name: Offline checks
+on:
+  push:
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+      - name: Unit tests (no device access)
+        env:
+          PYTHONDONTWRITEBYTECODE: '1'
+        run: python3 -m unittest discover -s scripts -p 'test_*.py'
+      - name: Shell syntax
+        run: for script in scripts/*.sh; do sh -n "$script"; done
+      - name: Publication boundary and hashes
+        run: python3 tools/check_publication.py

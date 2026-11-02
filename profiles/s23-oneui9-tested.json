@@ -1,0 +1,39 @@
+{
+  "identity": {
+    "ro.product.model": "SM-S911B",
+    "ro.product.device": "dm1q",
+    "ro.build.version.oneui": "90000",
+    "ro.build.version.release": "17",
+    "ro.build.version.sdk": "37",
+    "ro.build.fingerprint": "samsung/dm1qxxx/dm1q:17/CP2A.260605.016/S911BXXUAGZIF:user/release-keys",
+    "ro.build.version.security_patch": "2026-10-05",
+    "ro.product.cpu.abilist": "arm64-v8a,armeabi-v7a,armeabi"
+  },
+  "floating_sha256": "d6f46fdc40a76ce23a3f4268cebc58aa3dd9023198f78e94455189197a020feb",
+  "apks": {
+    "com.samsung.android.smartsuggestions": "9e09fc48d5a85c0f1c98a811e2554255988601c9b6e54865e22b07f12fc1d378",
+    "com.samsung.android.app.aodservice": "1d1b07db9855d7044e53b492106607ade40dd59b5ed41b5b85bfc1656cb52c52",
+    "com.android.systemui": "ddb92bdd9e00bbf6aef9f70ae53bca558a934629fcf1e1aff6efe8705ae35ff3",
+    "com.android.settings": "8e69d7105bdea8bdd8745ee64ad971bea1e9562909687e04d3267450ea5d3148"
+  },
+  "goal": "native-nowbrief-nudge-733009-s23-oneui9",
+  "activation_allowed": true,
+  "blockers": [],
+  "features": {
+    "SEC_FLOATING_FEATURE_COMMON_CONFIG_AI_VERSION": "20263",
+    "SEC_FLOATING_FEATURE_FRAMEWORK_SUPPORT_PERSONALIZED_DATA_CORE": "TRUE",
+    "SEC_FLOATING_FEATURE_FRAMEWORK_CONFIG_NOW_NUDGE_VERSION": "2",
+    "SEC_FLOATING_FEATURE_GENAI_CONFIG_LLM_VERSION": "1.70"
+  },
+  "components": [
+    "com.samsung.android.smartsuggestions/.feature.aisuggestion.ui.appwidget.AiSuggestionAppWidgetReceiver",
+    "com.samsung.android.smartsuggestions/.nudgesettings.NudgeMainSettingsActivity",
+    "com.samsung.android.smartsuggestions/.nudgesettings.action.NudgeActionSettingsActivity",
+    "com.samsung.android.smartsuggestions/.nudgesettings.recall.NudgeRecallSettingsActivity"
+  ],
+  "settings": {
+    "global/sss_enabled": "1",
+    "global/now_nudge_setting": "1"
+  },
+  "llm_disclaimer": "Feature gate only; no claim that offline models are installed"
+}

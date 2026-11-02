@@ -1,0 +1,21 @@
+# Uso pelo Termux
+
+Os scripts suportam `--termux` para executar `su -mm -c` localmente, sem ADB.
+O Python precisa estar instalado e o Termux autorizado no KernelSU.
+Mantenha esta pasta no armazenamento privado do Termux, nao em pasta publica.
+
+Exemplos, somente depois das verificacoes descritas no README:
+
+```sh
+python3 scripts/native.py collect --termux --state snapshots/features
+python3 scripts/native.py plan --termux --state snapshots/features --profile profiles/s23-oneui9-tested.json
+sh scripts/enable-nowbrief-s23.sh --termux --state snapshots/features --profile profiles/s23-oneui9-tested.json
+python3 scripts/diagnose-nowbar.py --termux --output diagnostics/nowbar
+sh scripts/rollback-nowbrief-s23.sh --termux --state snapshots/features
+```
+
+O fluxo Termux completo nao foi executado nesta validacao; os testes reais foram
+pelo computador com ADB. Ferramentas Android Build Tools de macOS/Linux desktop
+nao sao automaticamente executaveis no Termux. Para auditoria e instalacao de
+APK com aapt2/apksigner, prefira o computador ou prepare ferramentas compativeis.
+Nao remova as verificacoes para contornar ferramenta ausente.
