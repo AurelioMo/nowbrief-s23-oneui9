@@ -1,5 +1,7 @@
 #!/system/bin/sh
 MODDIR=${0%/*}
+# Re-check the mount on every service start, including userspace soft reboot.
+"$MODDIR/post-fs-data.sh"
 # Wait for Android settings and package manager, then apply only the audited state.
 until [ "$(getprop sys.boot_completed)" = "1" ]; do sleep 2; done
 settings put global sss_enabled 1

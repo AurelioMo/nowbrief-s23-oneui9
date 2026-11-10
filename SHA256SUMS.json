@@ -40,7 +40,7 @@
   "kernelsu-module/README.txt": "082b42385c7176575ca1b33fbc6418cd2844b3332ac79fb4218e69af725f8e5c",
   "kernelsu-module/module.prop": "865aabe6be2f8fe004e27579ba9d0059dcc8dceba79eaca1a0e0c535d0fe410e",
   "kernelsu-module/post-fs-data.sh": "e3cc45ed33d61ba1abd80a0e79ef6f248bcc39f5fc7dc21cecc44b711d0bf7ae",
-  "kernelsu-module/service.sh": "faad807d509806d10e42aee0b725d21ac9467cb62ff9a10ebca4f676e1cc309d",
+  "kernelsu-module/service.sh": "e50a4f2f4809fa7d9adf38aa51a3c4b69320a39ce40ace34dc65185e39b0a0ea",
   "kernelsu-module/uninstall.sh": "debcb53956723370b06fbf6c3813ef1df3c828f97a38adea880f09d803e7dbcd",
   "profiles/s23-oneui9-tested.json": "240b4dc22ae52465916caa2d23ae4ea23e22178148e614a6447dc3a056f35bcd",
   "run.sh": "390d1c577e958fbf7f824a8ac47fbdcaec62906e3e769a56ec2c859ee5bd2185",
