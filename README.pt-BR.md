@@ -22,7 +22,7 @@ Sem aplicativo substituto, sem flash e sem escrita fisica na particao do sistema
 
 ## Modulo persistente
 
-Um reboot completo remove o bind mount temporario usado pelos scripts originais. Este repositorio agora inclui um modulo LSPosed/Xposed que reaplica o estado auditado ao iniciar os processos. Compile ou baixe o APK do release, ative-o para os quatro alvos Samsung e o modulo instala o payload root automaticamente no primeiro carregamento. Leia [Modulo LSPosed persistente](docs/pt-BR/XPOSED.md) antes de ativar.
+Um reboot completo remove o bind mount temporario usado pelos scripts originais. Este repositorio agora inclui um modulo KernelSU que reaplica o estado auditado ao iniciar os processos. Compile ou baixe o APK do release, ative-o para os quatro alvos Samsung e o modulo instala o payload root automaticamente no primeiro carregamento. Leia [Modulo KernelSU persistente](docs/pt-BR/XPOSED.md) antes de ativar.
 
 ## Tutorial: faca nesta ordem
 
@@ -196,7 +196,7 @@ O perfil fixa identidade, hashes do XML e APKs. **Uma recusa do script e uma
 protecao, nao um convite para remover a verificacao.** Outra ROM ou variante
 exige nova auditoria. [Versoes, certificado e hashes](docs/pt-BR/VERSIONS.md).
 
-LSPosed e Zygisk Next ja estavam instalados. Nao foi necessario instalar
+KernelSU e Zygisk Next ja estavam instalados. Nao foi necessario instalar
 CorePatch ou habilitar bypass de assinatura neste teste. Nao afirmamos que os
 modulos encontrados sejam requisitos universais.
 

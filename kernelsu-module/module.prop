@@ -1,0 +1,6 @@
+id=nowbrief-persistent
+author=AurelioMo
+name=Now Brief Persistent (KernelSU)
+version=v1.1.0
+versionCode=110
+description=Reapplies the audited Galaxy S23 One UI 9 Now Brief feature flags at boot without Xposed hooks.

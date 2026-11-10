@@ -14,7 +14,7 @@ to the system partition. Samsung APKs, models and private device data are not in
 
 ## Persistent module
 
-A full reboot removes the temporary bind mount used by the original scripts. This repository now ships an LSPosed/Xposed module that reapplies the audited state at process startup. Build or download the release APK, enable it for the four Samsung targets, the module installs its root payload automatically on first hook load. Read [Persistent LSPosed module](docs/en/XPOSED.md) before enabling it.
+A full reboot removes the temporary bind mount used by the original scripts. This repository now ships an KernelSU module that reapplies the audited state at process startup. Build or download the release APK, enable it for the four Samsung targets, the module installs its root payload automatically on first hook load. Read [Persistent KernelSU module](docs/en/XPOSED.md) before enabling it.
 
 ## Step-by-step setup
 
@@ -171,7 +171,7 @@ Validation date: **November 2, 2026**.
 | Contextual Nudge | Request received, but messaging test blocked by app policy; no suggestion shown |
 | Notification Highlights | Not activated |
 
-LSPosed and Zygisk Next were present; that does not prove universal requirements.
+KernelSU and Zygisk Next were present; that does not prove universal requirements.
 CorePatch was not required for the tested same-signer update. The profile pins
 ROM, XML and APK hashes. See [Versions](docs/en/VERSIONS.md) and [Results](evidence/RESULTS.en.md).
 
