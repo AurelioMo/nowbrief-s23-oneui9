@@ -49,7 +49,7 @@
   "scripts/notification-highlights.py": "3e12ac95d987d1415bb463b8c6c2d0d0cfeeb54aedb15673537198fe2a4d1612",
   "scripts/rollback-nowbrief-s23.sh": "fdc1ef6e796e29cbfcc70e4caef3721cd8f3eb8cd9950462ace0244f3ffbe8e5",
   "scripts/signature_permissions.py": "f0d7516a121a8cc35f5b4d6c83a74a90b53c3c8e6dcea04c36ae7fa10dc2f0ca",
-  "scripts/xposed/apply.sh": "dc1489da278742ff84c7ce5ca61cc583cce158a132a4dc66dbde02f27a38c67c",
+  "scripts/xposed/apply.sh": "d822fa346aac5b07d3f9cfbd525697fc7a8aa18807eaf3a6d315e2194df16dbe",
   "scripts/xposed/install-payload.sh": "311eadfd6d628d9138384ebd28451e5b96982653367339beecc7474316f15e25",
   "scripts/xposed/rollback.sh": "bc0cc1c2aaa0f49c61805a974c10e2be31f30d1377bbbb249f9dd2fb9104e65c",
   "settings.gradle": "b33c8a784bc649aae6f65c4ecae7d3fc2ae176ec703b664838ef4a4ad2c20eff",
