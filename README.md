@@ -14,7 +14,7 @@ to the system partition. Samsung APKs, models and private device data are not in
 
 ## Persistent module
 
-A full reboot removes the temporary bind mount used by the original scripts. This repository now ships an LSPosed/Xposed module that reapplies the audited state at process startup. Build or download the release APK, enable it for the four Samsung targets, then install the root payload once with `sh run.sh xposed-install`. Read [Persistent LSPosed module](docs/en/XPOSED.md) before enabling it.
+A full reboot removes the temporary bind mount used by the original scripts. This repository now ships an LSPosed/Xposed module that reapplies the audited state at process startup. Build or download the release APK, enable it for the four Samsung targets, the module installs its root payload automatically on first hook load. Read [Persistent LSPosed module](docs/en/XPOSED.md) before enabling it.
 
 ## Step-by-step setup
 

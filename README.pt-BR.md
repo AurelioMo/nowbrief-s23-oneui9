@@ -22,7 +22,7 @@ Sem aplicativo substituto, sem flash e sem escrita fisica na particao do sistema
 
 ## Modulo persistente
 
-Um reboot completo remove o bind mount temporario usado pelos scripts originais. Este repositorio agora inclui um modulo LSPosed/Xposed que reaplica o estado auditado ao iniciar os processos. Compile ou baixe o APK do release, ative-o para os quatro alvos Samsung e instale o payload root uma vez com `sh run.sh xposed-install`. Leia [Modulo LSPosed persistente](docs/pt-BR/XPOSED.md) antes de ativar.
+Um reboot completo remove o bind mount temporario usado pelos scripts originais. Este repositorio agora inclui um modulo LSPosed/Xposed que reaplica o estado auditado ao iniciar os processos. Compile ou baixe o APK do release, ative-o para os quatro alvos Samsung e o modulo instala o payload root automaticamente no primeiro carregamento. Leia [Modulo LSPosed persistente](docs/pt-BR/XPOSED.md) antes de ativar.
 
 ## Tutorial: faca nesta ordem
 

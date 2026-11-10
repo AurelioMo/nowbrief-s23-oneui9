@@ -1,2 +1,1 @@
-This APK expects the companion payload at /data/adb/nowbrief-xposed/apply.sh.
-The repository's scripts/xposed/install-payload.sh installs it with KernelSU root.
+The APK embeds payload.sh and installs it automatically through KernelSU when LSPosed loads the module.

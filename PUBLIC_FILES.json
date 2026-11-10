@@ -69,8 +69,11 @@
   "xposed-module/proguard-rules.pro",
   "xposed-module/src/main/AndroidManifest.xml",
   "xposed-module/src/main/assets/README.txt",
+  "xposed-module/src/main/assets/payload.sh",
   "xposed-module/src/main/assets/xposed_init",
+  "xposed-module/src/main/java/com/aureliomo/nowbriefxposed/BootReceiver.java",
   "xposed-module/src/main/java/com/aureliomo/nowbriefxposed/MainHook.java",
+  "xposed-module/src/main/java/com/aureliomo/nowbriefxposed/PayloadRunner.java",
   "xposed-module/src/main/res/values/colors.xml",
   "xposed-module/src/main/res/values/strings.xml"
 ]
