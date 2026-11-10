@@ -1,3 +1,9 @@
+## 1.0.0 - 2026-11-10
+
+- Added the `xposed-module` LSPosed/Xposed APK for reboot-persistent Now Brief activation.
+- Added an idempotent KernelSU payload and `sh run.sh xposed-install`.
+- Added bilingual installation docs and a GitHub tag release workflow.
+
 # Changelog
 
 ## 2026-11-02 - bilingual documentation and policy audit

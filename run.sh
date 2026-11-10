@@ -46,6 +46,7 @@ Uso: sh run.sh COMANDO [ARGUMENTOS]
   open-nudge                 Abre as configuracoes originais do Nudge
   diagnose PASTA_NOVA         Coleta privada de logs e conexao GenUI/Now Bar
   nudge-policy               Confere a politica no APK ativo, sem modificar dados
+  xposed-install              Instala o payload persistente para o modulo LSPosed
   rollback PASTA             Restaura flags, componentes e Settings da transacao
   rollback-biometric PASTA   Restaura o XML de assinatura da transacao
 
@@ -96,6 +97,9 @@ HELP
         ;;
     nudge-policy)
         tool diagnose_nudge.py "$@"
+        ;;
+    xposed-install)
+        sh scripts/xposed/install-payload.sh
         ;;
     rollback)
         need_state "$@"

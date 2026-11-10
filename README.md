@@ -12,6 +12,10 @@ to the system partition. Samsung APKs, models and private device data are not in
 > are **not confirmed**, and the lock-screen Now Brief card did not appear in the
 > retest. Do not interpret a menu or a connected service as full functionality.
 
+## Persistent module
+
+A full reboot removes the temporary bind mount used by the original scripts. This repository now ships an LSPosed/Xposed module that reapplies the audited state at process startup. Build or download the release APK, enable it for the four Samsung targets, then install the root payload once with `sh run.sh xposed-install`. Read [Persistent LSPosed module](docs/en/XPOSED.md) before enabling it.
+
 ## Step-by-step setup
 
 If your phone is already activated, **do not reinstall or reapply everything**.
@@ -175,7 +179,7 @@ ROM, XML and APK hashes. See [Versions](docs/en/VERSIONS.md) and [Results](evide
 
 | Path | Purpose |
 | --- | --- |
-| `run.sh` | Command entry point: setup, activation, diagnostics and rollback |
+| `run.sh` | Command entry point: setup, activation, diagnostics, rollback and Xposed payload install |
 | `scripts/` | Device tools, including experimental bridge utilities |
 | `profiles/` | Strict compatibility profile; not a universal device list |
 | `tests/` | Offline tests; no phone changes |

@@ -1,0 +1,8 @@
+plugins { id 'com.android.application' }
+
+android { namespace 'com.aureliomo.nowbriefxposed'; compileSdk 35
+    defaultConfig { applicationId 'com.aureliomo.nowbriefxposed'; minSdk 27; targetSdk 35; versionCode 1; versionName '1.0.0' }
+    buildTypes { release { signingConfig signingConfigs.debug; minifyEnabled false; proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro' } }
+}
+
+dependencies { compileOnly project(':xposed-api-stub') }

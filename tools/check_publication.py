@@ -10,7 +10,7 @@ import zipfile
 
 
 ROOT = Path(__file__).resolve().parents[1]
-IGNORED_DIRECTORIES = {'.git', '__pycache__', 'graphify-out'}
+IGNORED_DIRECTORIES = {'.git', '__pycache__', 'graphify-out', '.gradle', 'build'}
 SENSITIVE_PATTERNS = {
     'GitHub token': re.compile(r'\b(?:gh[pousr]_[A-Za-z0-9]{20,}|github_pat_[A-Za-z0-9_]{30,})\b'),
     'private key': re.compile(r'-----BEGIN (?:RSA |EC |OPENSSH |ENCRYPTED )?PRIVATE KEY-----'),
