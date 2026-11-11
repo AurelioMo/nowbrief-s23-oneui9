@@ -1,6 +1,6 @@
 id=nowbrief-persistent
+name=Now Brief (KernelSU, controlled activation)
+version=v1.2.0-dev
+versionCode=120
 author=AurelioMo
-name=Now Brief Persistent (KernelSU)
-version=v1.1.0
-versionCode=110
-description=Reapplies the audited Galaxy S23 One UI 9 Now Brief feature flags at boot without Xposed hooks.
+description=Device-pinned XML overlay. Manual activation by default. No automatic Android restart.

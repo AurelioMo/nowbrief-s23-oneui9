@@ -1,1 +1,0 @@
-<resources><string name="app_name">Now Brief Persistent</string><string name="app_description">Reapplies the audited Now Brief state after reboot using LSPosed/Xposed and KernelSU.</string></resources>

@@ -12,9 +12,9 @@ to the system partition. Samsung APKs, models and private device data are not in
 > are **not confirmed**, and the lock-screen Now Brief card did not appear in the
 > retest. Do not interpret a menu or a connected service as full functionality.
 
-## Persistent module
+## KernelSU development status
 
-A full reboot removes the temporary bind mount used by the original scripts. This repository now ships an KernelSU module that reapplies the audited state at process startup. Build or download the release APK, enable it for the four Samsung targets, the module installs its root payload automatically on first hook load. Read [Persistent KernelSU module](docs/en/XPOSED.md) before enabling it.
+Xposed v1.0.x and KernelSU v1.1.x are withdrawn after device crashes. The current v1.2.0-dev module requires a device-specific ZIP and defaults to manual activation. Simulated tests pass only when reported by CI; device installation and soft reboot remain unverified. Follow the [controlled KernelSU procedure](docs/en/KERNELSU.md). This repository is private and uses commits for versioning.
 
 ## Step-by-step setup
 
@@ -171,7 +171,7 @@ Validation date: **November 2, 2026**.
 | Contextual Nudge | Request received, but messaging test blocked by app policy; no suggestion shown |
 | Notification Highlights | Not activated |
 
-KernelSU and Zygisk Next were present; that does not prove universal requirements.
+LSPosed and Zygisk Next were present; that does not prove universal requirements.
 CorePatch was not required for the tested same-signer update. The profile pins
 ROM, XML and APK hashes. See [Versions](docs/en/VERSIONS.md) and [Results](evidence/RESULTS.en.md).
 
@@ -179,7 +179,7 @@ ROM, XML and APK hashes. See [Versions](docs/en/VERSIONS.md) and [Results](evide
 
 | Path | Purpose |
 | --- | --- |
-| `run.sh` | Command entry point: setup, activation, diagnostics, rollback and Xposed payload install |
+| `run.sh` | Command entry point: setup, activation, diagnostics, rollback and private KernelSU ZIP preparation |
 | `scripts/` | Device tools, including experimental bridge utilities |
 | `profiles/` | Strict compatibility profile; not a universal device list |
 | `tests/` | Offline tests; no phone changes |

@@ -1,3 +1,11 @@
+## 1.2.0-dev - 2026-11-11
+
+- Withdrew Xposed and KernelSU v1.1.x installation paths after device crashes.
+- Replaced mutable shared XML generation with a device-pinned private ZIP builder.
+- Added preflight guards, SELinux labeling, mount ownership, rollback and one-shot boot authorization.
+- Added simulated failure-path regression tests. Real device boot validation remains pending.
+- Made the repository private and removed automatic release uploads.
+
 ## 1.0.0 - 2026-11-10
 
 - Added the `xposed-module` LSPosed/Xposed APK for reboot-persistent Now Brief activation.

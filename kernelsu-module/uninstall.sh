@@ -1,3 +1,4 @@
 #!/system/bin/sh
-# KernelSU removes the module directory after this script; the original mount disappears on reboot.
-rm -f /data/adb/nowbrief-persistent/floating_feature.xml
+MODDIR=${0%/*}
+# KernelSU may invoke removal while our mount is still active.
+sh "$MODDIR/control.sh" rollback >> "$MODDIR/boot.log" 2>&1

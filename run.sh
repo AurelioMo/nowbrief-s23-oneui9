@@ -46,8 +46,8 @@ Uso: sh run.sh COMANDO [ARGUMENTOS]
   open-nudge                 Abre as configuracoes originais do Nudge
   diagnose PASTA_NOVA         Coleta privada de logs e conexao GenUI/Now Bar
   nudge-policy               Confere a politica no APK ativo, sem modificar dados
-  kernelsu-install            Instala o modulo KernelSU persistente (sem Xposed)
-  xposed-install              Compatibilidade legada; nao use no Android 17
+  kernelsu-install            Mostra como preparar ZIP privado para o KernelSU
+  xposed-install              Descontinuado apos travamentos
   rollback PASTA             Restaura flags, componentes e Settings da transacao
   rollback-biometric PASTA   Restaura o XML de assinatura da transacao
 
