@@ -1,6 +1,6 @@
 id=nowbrief-persistent
-name=Now Brief (KernelSU, controlled activation)
-version=v1.2.0-dev
-versionCode=120
+name=Now Brief + Nudge + Memory (controlled activation)
+version=v1.4.0-rc1
+versionCode=14001
 author=AurelioMo
-description=Device-pinned XML overlay. Manual activation by default. No automatic Android restart.
+description=Device-pinned Brief/Nudge/Memory activation, optional Home Up swipe mapping and same-signer biometric allowlist. No automatic Android reboot.

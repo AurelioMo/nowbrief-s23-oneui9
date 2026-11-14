@@ -1,5 +1,13 @@
 # Problemas conhecidos
 
+## v1.4.0-rc1
+
+Caminho atual: [KernelSU](KERNELSU.md). Mapeamento Home Up pertence ao modulo,
+mas gesto fisico e soft reboot do RC ainda nao foram confirmados.
+Smart Suggestions 7.3.30.9 e 7.3.31.4 instalado nao incluem `ActiveMemoryProvider`.
+Endpoint ausente fornece sugestoes do Memory; outras rotas de IA exigem diagnostico separado.
+Registros historicos abaixo nao substituem esses limites atuais.
+
 ## Dados pessoais / Now Nudge: crash na biometria corrigido no caso testado
 
 Confirmado no caso testado em 2026-11-02, depois da publicacao local inicial

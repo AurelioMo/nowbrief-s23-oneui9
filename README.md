@@ -7,14 +7,20 @@ for **SM-S911B / dm1q, One UI 9, Android 17 and KernelSU**.
 Original Samsung features, not a replacement app. No flashing or physical writes
 to the system partition. Samsung APKs, models and private device data are not included.
 
-> Tested on one specific ROM. Now Brief cards and the home-screen widget work.
-> Personal Data Intelligence settings were fixed. Contextual Now Nudge suggestions
-> are **not confirmed**, and the lock-screen Now Brief card did not appear in the
-> retest. Do not interpret a menu or a connected service as full functionality.
+> Tested on one specific ROM. The user reports Brief, Nudge, Memory and biometric
+> settings working. Memory AI still requires a newer Smart Suggestions backend.
+> Three-finger capture mapping is experimental; physical recognition is not confirmed.
 
 ## KernelSU development status
 
-Xposed v1.0.x and KernelSU v1.1.x are withdrawn after device crashes. The current v1.2.0-dev module requires a device-specific ZIP and defaults to manual activation. Simulated tests pass only when reported by CI; device installation and soft reboot remain unverified. Follow the [controlled KernelSU procedure](docs/en/KERNELSU.md). This repository is private and uses commits for versioning.
+**Current release: [v1.4.0-rc1](https://github.com/AurelioMo/nowbrief-s23-oneui9/releases/tag/v1.4.0-rc1)**.
+Use the [KernelSU procedure](docs/en/KERNELSU.md) as the current installation path.
+The opt-in `--with-memory --soft-reboot --with-biometric --with-homeup-gesture`
+build includes module-owned Home Up swipe mapping and reversible biometric activation.
+Public release assets contain source only. Prepare your private, device-pinned
+installable ZIP locally; never publish its XML or Home Up preferences.
+Xposed v1.0.x and KernelSU v1.1.x remain withdrawn after crashes.
+The legacy command-by-command tutorial below remains reference material, not the preferred module installation.
 
 ## Step-by-step setup
 
@@ -37,7 +43,9 @@ sh run.sh status
 
 ### 2. Install Smart Suggestions only if needed
 
-The tested APK is **7.3.30.9 / 733009000**, arm64-v8a, minSdk 34, targetSdk 36.
+Current pinned APK: **7.3.31.4 / 733104000**, arm64-v8a, minSdk 34, targetSdk 36.
+Samsung signature and installed hash were verified on the S23. Full feature
+regression testing remains pending; `ActiveMemoryProvider` is still absent.
 Obtain it yourself from the [Smart Suggestions listing](https://www.apkmirror.com/apk/samsung-electronics-co-ltd/samsungsmartsuggestions/).
 The version number alone does not establish compatibility. Compare the active
 APK's signer, dependencies and data migration requirements. If the exact tested
@@ -57,7 +65,7 @@ Only after verifying the review and consistent private backup:
 sh run.sh install \
   --state snapshots/preinstall-01 \
   --apk /path/to/SmartSuggestions.apk \
-  --sha256 9e09fc48d5a85c0f1c98a811e2554255988601c9b6e54865e22b07f12fc1d378 \
+  --sha256 d95a952266d4050ad5ce440bdf2443f375f2497c5a10c848799eb28a12e9e5cb \
   --source EXACT_DOWNLOAD_SOURCE_URL \
   --review /path/to/review.json \
   --reversible-trial

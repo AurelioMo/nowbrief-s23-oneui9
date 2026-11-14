@@ -1,4 +1,4 @@
-name: Versioning only
+name: Manual source release checks
 # Releases are intentionally manual. Tags never build or upload APKs/modules.
 on:
   workflow_dispatch:
@@ -9,4 +9,5 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
-      - run: echo 'Use commits for versioning. No release assets are generated.'
+      - run: PYTHONPATH=scripts python3 -m unittest discover -s tests -p 'test_*.py'
+      - run: python3 tools/check_publication.py

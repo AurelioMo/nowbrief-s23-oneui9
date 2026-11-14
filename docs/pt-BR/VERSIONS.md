@@ -1,5 +1,13 @@
 # Versoes e integridade do caso testado
 
+Modulo/release de fontes atual: **v1.4.0-rc1**. Siga [KernelSU](KERNELSU.md).
+ZIP preparado e privado; RC nao comprova reconhecimento fisico do gesto.
+
+Perfil atual (14 de novembro): Smart Suggestions **7.3.31.4 / 733104000**,
+SHA-256 `d95a952266d4050ad5ce440bdf2443f375f2497c5a10c848799eb28a12e9e5cb`.
+Mesmo signer Samsung e hash instalado conferidos. Provider de sugestoes do
+Memory continua ausente. Hashes antigos abaixo documentam baseline historico.
+
 Data da validacao: 2026-11-02. Modelo SM-S911B, dm1q, One UI 9, Android 17/API37,
 build S911BXXUAGZIF. Estes hashes identificam o teste, nao uma lista de APKs
 obrigatorios para qualquer ROM. O perfil verifica tambem a identidade da ROM.

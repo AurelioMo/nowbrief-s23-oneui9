@@ -1,5 +1,13 @@
 # Known issues
 
+## v1.4.0-rc1
+
+Current path: [KernelSU](KERNELSU.md). Home Up swipe mapping is module-owned,
+but physical gesture recognition and rebuilt RC soft reboot are not confirmed.
+Smart Suggestions 7.3.30.9 and installed 7.3.31.4 lack `ActiveMemoryProvider`.
+The missing endpoint serves Memory hints; other AI paths need separate diagnosis.
+Historical observations below do not override these current limits.
+
 [Tutorial](../../README.md) | [Portugues](../pt-BR/KNOWN_ISSUES.md)
 
 ## Personal Data settings crash

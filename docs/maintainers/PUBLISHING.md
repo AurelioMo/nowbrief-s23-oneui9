@@ -24,12 +24,13 @@ contem serial, IMEI, conta ou dados pessoais do aparelho.
 ## Destino e licenca
 
 O GitHub CLI foi verificado e tem autenticacao ativa. Nenhum token foi exportado
-para a pasta. Destino autorizado: repositorio privado
+para a pasta. Destino autorizado: repositorio publico
 `AurelioMo/nowbrief-s23-oneui9`, branch `main`. A publicacao usa somente a
 lista explicita de arquivos aprovados, nunca a pasta privada de trabalho.
-O versionamento atual usa somente commits. Releases automaticas foram desativadas.
-ZIPs preparados com XML do aparelho ficam fora do repositorio. As releases antigas
-estao em rascunho e marcadas como obsoletas.
+Release atual: v1.4.0-rc1, experimental, publicada manualmente com fontes aprovadas.
+ZIPs instalaveis preparados com XML e preferencias do aparelho ficam privados,
+fora do repositorio e fora dos assets da release. Releases antigas permanecem
+em rascunho e marcadas como obsoletas. Nenhum workflow publica automaticamente.
 
 O codigo e a documentacao originais desta adaptacao usam [MIT](../../LICENSE).
 A licenca nao abrange aplicativos Samsung ou material de terceiros.

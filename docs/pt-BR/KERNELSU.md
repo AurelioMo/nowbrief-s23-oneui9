@@ -1,42 +1,79 @@
-# KernelSU — ativacao controlada
+# KernelSU v1.4.0-rc1
 
-As versoes Xposed v1.0.x e KernelSU v1.1.x tiveram relatos de travamento neste aparelho e foram retiradas do fluxo suportado. A v1.2.0-dev foi revisada e tem testes simulados. A instalacao e o soft reboot no S23 ainda precisam ser validados. O repositorio e privado e usa commits para versionamento.
+Modulo experimental atual: SM-S911B / dm1q, Android 17 / One UI 9.
+Xposed v1.0.x e KernelSU v1.1.x permanecem retirados.
 
-## Preparar o ZIP
+## Preparar e instalar
 
-Com o Android estavel, root ja disponivel e a ativacao manual auditada concluida, prepare um ZIP privado fora do repositorio:
+A release publica contem fontes, nao um ZIP universal instalavel. O ZIP preparado
+inclui XML do aparelho, estado de rollback e preferencias privadas do Home Up.
+Nunca publique esse ZIP. Memory, Home Up e Save Memory devem estar instalados;
+nenhum APK Samsung ou de terceiros acompanha a release.
+
+Com Android estavel, root existente e `apksigner` do Android SDK no PATH:
 
 ```sh
-python3 scripts/prepare-kernelsu.py --output /caminho/privado/nowbrief-private.zip
+python3 scripts/prepare-kernelsu.py \
+  --with-memory --soft-reboot --with-biometric --with-homeup-gesture \
+  --output /caminho/privado/nowbrief-s23-v1.4.0-rc1.zip
 ```
 
-A preparacao le identidade da ROM, hashes do XML e APKs, configuracoes e componentes. Recusa mount preexistente, ROM diferente, layout de APK inesperado ou ativacao manual incompleta. O ZIP inclui o XML original do aparelho. Mantenha-o privado.
+Preparacao somente le o aparelho. Confere ROM/APKs exatos, XML original e namespace
+do init. Mounts existentes exigem rollback antes de preparar outro ZIP.
+Nao substitua modulo ativo nem apague journals para forcar atualizacao.
+Guarde ZIP privado anterior e estado da transacao ate concluir a migracao.
 
-Instale o ZIP preparado pelo KernelSU Manager. A instalacao confere novamente ROM, APKs, XML e configuracoes. A execucao automatica inicia DESLIGADA.
+Instale seu ZIP privado pelo KernelSU Manager. Esse modo opt-in autoriza montagem
+antecipada no proximo soft reboot. Quando decidir reiniciar, use **Soft reboot
+do KernelSU** / `ksud soft-reboot`. Reboot completo perde root efemero DirtyFrag.
+O modulo nunca inicia reboot.
 
-## Validar manualmente
+## Correcoes desta versao
 
-O botao Action do modulo monta apenas o XML preparado. Verifica hash, namespace de montagem, contexto SELinux e propriedade do mount. As configuracoes e os componentes que ja foram ativados permanecem como estavam. O modulo nao reinicia o Android nem para aplicativos.
+- Floating Features e allowlist biometrica opcional montados antes do framework,
+  com hashes fixados. Allowlist do mesmo signer, sem contornar autenticacao.
+- Espera limitada por Android, Package Manager e SettingsProvider.
+- Ativacao dos componentes auditados e `WRITE_SECURE_SETTINGS` solicitado por Memory.
+- `--with-homeup-gesture`: fixa APKs Home Up/Save Memory e mapeia tres dedos para
+  baixo para Save Memory, preservando outros ajustes.
+- Exige navegacao por gestos em varias direcoes; nao muda navegacao automaticamente.
+- Usa caminho Home Up em vez do toggle nativo concorrente do Memory.
+- Aplicacao/restauracao do mapeamento reinicia somente Home Up e One UI Home.
+  Nao limpa dados, nao fabrica onboarding e nao contorna bloqueios de captura.
 
-Com root existente, estes comandos oferecem controle explicito:
+Recusa substituir outra acao ja atribuida a tres dedos para baixo. Preferencias
+alteradas desde a preparacao nao sao sobrescritas. Rollback so restaura snapshot
+se ainda pertencer a transacao; edicoes posteriores causam recusa segura,
+preservando journal para evitar perda de dados.
+
+## Controle e rollback
 
 ```sh
 su -mm -c 'sh /data/adb/modules/nowbrief-persistent/control.sh status'
-su -mm -c 'sh /data/adb/modules/nowbrief-persistent/control.sh apply'
-# Depois de verificar que Android e Now Brief estao funcionando:
-su -mm -c 'sh /data/adb/modules/nowbrief-persistent/control.sh confirm'
-# Para desfazer o mount e desligar autorizacoes futuras:
+su -mm -c 'sh /data/adb/modules/nowbrief-persistent/control.sh preflight'
+su -mm -c 'sh /data/adb/modules/nowbrief-persistent/memory-gesture.sh status'
 su -mm -c 'sh /data/adb/modules/nowbrief-persistent/control.sh rollback'
 ```
 
-Antes do teste de soft reboot, mantenha a execucao automatica desligada. Um reinicio apenas do zygote nao garante nova execucao dos estagios KernelSU. Primeiro verifique a estabilidade e se o mount permanece visivel apos o seu tipo de soft reboot.
+Action/ativacao manual e boot usam a mesma transacao de gesto dentro do modulo.
+Tentativas interrompidas bloqueiam repeticao automatica. Nao apague `attempt`,
+`apps.changed` ou `gesture.changed` para esconder falhas.
+Confirmacao apos 120 segundos comprova liveness, nao funcionamento dos recursos.
 
-## Tentativa automatica opcional
+## Validacao e limites
 
-Somente depois de uma ativacao manual confirmada, `control.sh arm` autoriza UMA tentativa automatica. A autorizacao e consumida antes da validacao. Uma marca persistente impede repeticao automatica apos falha ou travamento. Cada nova tentativa exige verificacao e autorizacao manual. Isso limita a persistencia automatica em favor de recuperacao.
+Usuario relata Brief, Nudge, Memory e ajustes biometricos funcionando no S23.
+Foi observado Save Memory abrindo a activity de captura. Mapeamento Home Up foi
+aplicado pelo modulo, mas reconhecimento do gesto fisico e soft reboot do RC
+recriado ainda precisam de confirmacao.
 
-O fluxo de root temporario e a versao instalada do KernelSU precisam de validacao propria. A documentacao upstream nao confirma o comportamento do fork Samsung usado no aparelho. Consulte o [guia KernelSU](https://kernelsu.org/guide/module.html).
-
-O modulo guarda os arquivos da transacao dentro da propria pasta. Dados deixados pelas versoes antigas em `/data/adb/nowbrief-persistent` sao ignorados. O rollback verifica a propriedade do mount antes de desmontar. Mudancas persistentes das versoes antigas em Settings/componentes exigem os snapshots originais para restauracao.
-
-A etapa post-fs-data permanece inativa. O service aguarda o Android terminar o boot por ate 120 segundos antes da tentativa autorizada. O XML pode ja estar em cache nos processos Samsung; a montagem isolada nao comprova funcionamento. Atualizacao do cache e soft reboot exigem validacao manual separada.
+Perfil atual fixa Smart Suggestions 7.3.31.4 (733104000), instalado com assinatura
+Samsung e hash conferidos. Tanto 7.3.30.9 quanto 7.3.31.4 nao incluem `ActiveMemoryProvider`.
+Memory chama `getActiveMemoryHintsByTime` em
+`content://com.samsung.android.moneta.feature.activememory.ActiveMemoryProvider`,
+envia `query_time_start`, `query_time_end`, `query_limit` e espera
+`active_memory_hints_by_time`. E um feed de sugestoes; isso nao prova que todas
+as outras funcoes de IA dependem desse mesmo endpoint.
+Nao fornecemos provider vazio/falso. Preferencia habilitada nao comprova IA.
+Teste tres dedos para baixo numa pagina comum, confirme captura e salve manualmente.
+Nenhum teste automatizado comprova gesto fisico.

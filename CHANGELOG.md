@@ -1,3 +1,16 @@
+# Changelog
+
+## 1.4.0-rc1 - 2026-11-14
+
+- Current KernelSU module and public source prerelease; prepared device ZIPs remain private.
+- Added opt-in Home Up three-finger-down mapping to installed Save Memory.
+- Preserved unrelated preferences, APK pins, conflict checks and conservative rollback.
+- Fixed Android shell hash alias collision and bounded Package Manager/Settings readiness.
+- Added early same-signer biometric allowlist and soft-reboot generation guards.
+- Physical swipe recognition and rebuilt RC soft reboot remain unconfirmed.
+- Updated profile to same-signer Smart Suggestions 7.3.31.4; installed hash verified.
+- Both tested APK versions lack the ActiveMemory hint provider. No fake provider added.
+
 ## 1.2.0-dev - 2026-11-11
 
 - Withdrew Xposed and KernelSU v1.1.x installation paths after device crashes.
@@ -11,8 +24,6 @@
 - Added the `xposed-module` LSPosed/Xposed APK for reboot-persistent Now Brief activation.
 - Added an idempotent KernelSU payload and `sh run.sh xposed-install`.
 - Added bilingual installation docs and a GitHub tag release workflow.
-
-# Changelog
 
 ## 2026-11-02 - bilingual documentation and policy audit
 

@@ -16,13 +16,20 @@ Sem aplicativo substituto, sem flash e sem escrita fisica na particao do sistema
 ---
 
 > **Leia antes de executar:** validado em um SM-S911B/dm1q com uma ROM especifica.
-> Now Brief funciona com cards reais. A abertura de Dados pessoais foi corrigida.
-> **Now Nudge contextual e cartao visivel na Now Bar ainda nao foram validados.**
+> Usuario relata Brief, Nudge, Memory e ajustes biometricos funcionando.
+> **IA depende de Smart Suggestions mais novo; gesto fisico ainda nao confirmado.**
 > Este projeto nao e um desbloqueio universal nem um instalador de um clique.
 
 ## Estado do modulo KernelSU
 
-Xposed v1.0.x e KernelSU v1.1.x foram retirados apos travamentos no aparelho. A v1.2.0-dev exige ZIP preparado para o aparelho e inicia com ativacao manual. Os testes simulados nao validam o boot real. Instalacao e soft reboot ainda precisam de validacao. Siga o [procedimento controlado KernelSU](docs/pt-BR/KERNELSU.md). O repositorio e privado e usa commits para versionamento.
+**Release atual: [v1.4.0-rc1](https://github.com/AurelioMo/nowbrief-s23-oneui9/releases/tag/v1.4.0-rc1)**.
+Siga o [procedimento KernelSU](docs/pt-BR/KERNELSU.md) para instalacao atual.
+Modo opt-in `--with-memory --soft-reboot --with-biometric --with-homeup-gesture`
+inclui mapeamento Home Up pelo modulo e ativacao biometrica reversivel.
+Release publica distribui somente fontes. Gere localmente seu ZIP instalavel
+privado, fixado ao aparelho; nunca publique XML nem preferencias do Home Up.
+Xposed v1.0.x e KernelSU v1.1.x continuam retirados apos travamentos.
+Tutorial manual abaixo e referencia historica, nao o caminho preferido de instalacao do modulo.
 
 ## Tutorial: faca nesta ordem
 

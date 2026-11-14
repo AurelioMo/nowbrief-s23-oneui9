@@ -1,3 +1,4 @@
 #!/system/bin/sh
-# Intentionally inert. APK hashing and mounting are performed after Android boot.
-exit 0
+MODDIR=${0%/*}
+# Opt-in only. No Package Manager calls, waits or Android restarts here.
+sh "$MODDIR/control.sh" early >> "$MODDIR/boot.log" 2>&1

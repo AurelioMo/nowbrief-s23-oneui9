@@ -1,5 +1,13 @@
 # Tested versions and integrity
 
+Current module/source release: **v1.4.0-rc1**. Follow [KernelSU](KERNELSU.md).
+Prepared device ZIPs are private; this RC does not claim verified physical swipe recognition.
+
+Current profile (November 14): Smart Suggestions **7.3.31.4 / 733104000**,
+SHA-256 `d95a952266d4050ad5ce440bdf2443f375f2497c5a10c848799eb28a12e9e5cb`.
+Same Samsung signer verified; installed file hash matches. Memory hint provider
+still absent. Older hashes below describe the historical baseline.
+
 [Tutorial](../../README.md) | [Portugues](../pt-BR/VERSIONS.md)
 
 Audited November 2, 2026: SM-S911B/dm1q, One UI 9, Android 17/API 37,
